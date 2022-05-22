@@ -11,18 +11,20 @@ import pymongo
 
 def get_last_video_url(username):
     with sync_playwright() as p:
-        for navigator in [p.chromium, p.firefox]:
-            browser = navigator.launch(headless=False)
+        #for navigator in [p.chromium, p.firefox]:
+            print("get_last_video_url def started")
+			browser = p.chromium.launch(headless=False)
             page = browser.new_page()
-            page.goto("http://tiktok.com/@{}".format(username))
-            latest_video = page.query_selector(
-            'xpath=/html/body/div[2]/div[2]/div[2]/div/div[2]/div[2]/div/div/div[1]/div/div/a')
+            page.goto("https://fing.fingil.workers.dev/@{}".format(username))
+            latest_video = page.query_selector('xpath=/html/body/section[2]/div[1]/article[1]/div/div[3]/div[1]/a[2]')
         url = latest_video.get_property('href')
         browser.close()
+		print(url.text)
         return url
     
 def get_download_url(username):
-    url = get_last_video_url(username)
+    print("get_download_url def started")
+	url = get_last_video_url(username)
     if url == None:
         return None
     url = str(url) + '/'
@@ -60,7 +62,7 @@ class TIbot:
         self.cl.clip_upload(filename, caption="In this page @farzadrgh , we publish new videos regularly and without interruption, please follow us first to support us, then story any video you like and send it directly to 5 of your friends.💡💡DM for credit or removal request (no copyright infringement intended)💡💡🔗All rights and credits reserved to the respective owner(s).#Viral #viralreels #reelsviral #reels #reelsinsta #viralreels #instagram #insta #explore")
 
     def get_last_video_id_form_tiktok(self, tiktokusername: str) -> str:
-        return tiktok.get_download_url(tiktokusername)
+        return get_download_url(tiktokusername)
 
     def run(self) -> None:
         while True:
