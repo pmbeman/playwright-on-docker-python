@@ -49,6 +49,8 @@ RUN apt-get install -y --no-install-recommends \
 # Install Firefox dependencies
 RUN apt-get install -y --no-install-recommends libdbus-glib-1-2 libxt6
 
+RUN apt-get install -y gstreamer1.0-libav libnss3-tools libatk-bridge2.0-0 libcups2-dev libxkbcommon-x11-0 libxcomposite-dev libxrandr2 libgbm-dev libgtk-3-0
+
 # Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
 RUN apt-get install -y --no-install-recommends ffmpeg libffi-dev
 
