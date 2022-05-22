@@ -1,0 +1,6 @@
+instagrapi
+requests
+moviepy
+playwright
+pymongo[srv]
+dnspython
