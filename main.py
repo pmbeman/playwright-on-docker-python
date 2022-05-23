@@ -70,7 +70,7 @@ class TIbot:
                 try:
                     video_url, video_id = self.get_last_video_id_form_tiktok(
                         tiktokusername)
-                    #db
+                    #db#
                     #get mongo collect
                     mdb = MongoClient["ticktok"]
                     mcol = mdb["videos"]
