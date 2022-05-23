@@ -13,7 +13,7 @@ def get_last_video_url(username):
     with sync_playwright() as p:
         #for navigator in [p.chromium, p.firefox]:
             print("get_last_video_url def started")
-			browser = p.chromium.launch(headless=False)
+            browser = p.chromium.launch(headless=False)
             page = browser.new_page()
             page.goto("https://fing.fingil.workers.dev/@{}".format(username))
             latest_video = page.query_selector('xpath=/html/body/section[2]/div[1]/article[1]/div/div[3]/div[1]/a[2]')
